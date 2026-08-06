@@ -1,7 +1,4 @@
-/* ===================================================================
-   CAMPUS REEL — a simple video CRUD app
-   Plain JS, hash-based routing (#/login, #/dashboard, #/video/:id, etc.)
-   =================================================================== */
+
 
 const BASE_URL = "https://video-api-r1.onrender.com/api";
 const ALLOWED_DOMAIN = "rbunagpur.in";
@@ -9,8 +6,6 @@ const ALLOWED_DOMAIN = "rbunagpur.in";
 const app = document.getElementById("app");
 const navLinks = document.getElementById("navLinks");
 const toastEl = document.getElementById("toast");
-
-/* ---------------- tiny helpers ---------------- */
 function getToken() { return localStorage.getItem("token"); }
 function getUser() {
   try { return JSON.parse(localStorage.getItem("user")); } catch { return null; }
@@ -35,8 +30,6 @@ function escapeHtml(str) {
   d.textContent = str || "";
   return d.innerHTML;
 }
-
-/* ---------------- one function for every API call ---------------- */
 async function apiRequest(path, method = "GET", body = null) {
   const headers = {};
   if (isLoggedIn()) headers["Authorization"] = "Bearer " + getToken();
@@ -57,7 +50,6 @@ async function apiRequest(path, method = "GET", body = null) {
   return data.data !== undefined ? data.data : data;
 }
 
-/* ---------------- routing ---------------- */
 function navigate(hash) {
   window.location.hash = hash;
 }
@@ -67,11 +59,9 @@ window.addEventListener("load", render);
 
 function render() {
   const hash = window.location.hash || "#/login";
-  const [, route, param] = hash.split("/"); // e.g. "#/video/123" -> ["", "video", "123"]
+  const [, route, param] = hash.split("/"); 
 
   renderNavbar();
-
-  // route guards
   const publicRoutes = ["login", "register"];
   if (!publicRoutes.includes(route) && !isLoggedIn()) {
     return navigate("#/login");
@@ -101,9 +91,6 @@ function renderNavbar() {
   }
 }
 
-/* =====================================================================
-   PAGE: LOGIN
-   ===================================================================== */
 function renderLogin() {
   app.innerHTML = `
     <div class="form-card">
@@ -149,9 +136,6 @@ function renderLogin() {
   });
 }
 
-/* =====================================================================
-   PAGE: REGISTER
-   ===================================================================== */
 function renderRegister() {
   app.innerHTML = `
     <div class="form-card">
@@ -196,7 +180,6 @@ function renderRegister() {
 
     banner.style.display = "none";
 
-    // email domain validation — required by Task 2
     if (!isCollegeEmail(email)) {
       emailInput.classList.add("invalid");
       emailError.textContent = `Only @${ALLOWED_DOMAIN} emails are allowed.`;
@@ -225,10 +208,6 @@ function renderRegister() {
     }
   });
 }
-
-/* =====================================================================
-   PAGE: DASHBOARD (list videos — READ)
-   ===================================================================== */
 async function renderDashboard() {
   app.innerHTML = `
     <div class="page-title">
@@ -275,9 +254,6 @@ async function renderDashboard() {
   }
 }
 
-/* =====================================================================
-   PAGE: UPLOAD (CREATE)
-   ===================================================================== */
 function renderUpload() {
   app.innerHTML = `
     <div class="form-card">
@@ -325,9 +301,6 @@ function renderUpload() {
   });
 }
 
-/* =====================================================================
-   PAGE: VIDEO DETAIL (READ one + DELETE + link to edit)
-   ===================================================================== */
 async function renderVideoDetail(id) {
   app.innerHTML = `<div class="loading">Loading video…</div>`;
 
@@ -367,9 +340,6 @@ async function renderVideoDetail(id) {
   }
 }
 
-/* =====================================================================
-   PAGE: EDIT (UPDATE)
-   ===================================================================== */
 async function renderEdit(id) {
   app.innerHTML = `<div class="loading">Loading…</div>`;
 
