@@ -78,5 +78,10 @@ message if you hit the limit.
 
 ## Screenshots
 
-_Add screenshots of the login, dashboard, video detail, and upload
-pages here before submitting._
+<img width="1920" height="1080" alt="Screenshot 2026-08-06 211407" src="https://github.com/user-attachments/assets/5958cd2a-a7ae-4100-ae90-e361331d4111" />
+<img width="1920" height="1080" alt="Screenshot 2026-08-06 211419" src="https://github.com/user-attachments/assets/f0025627-9689-4477-b030-ce1a716314da" />
+<img width="1920" height="1080" alt="Screenshot 2026-08-06 211431" src="https://github.com/user-attachments/assets/5a814394-a83c-4939-aa00-1db2ce6ffda0" />
+
+
+
+
